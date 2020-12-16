@@ -1,7 +1,9 @@
 HelloWorld := Window {
-        Text {
-            text: "hello world!! (from file)";
-            color: green;
+        Rectangle {
+            Text {
+                text: "hello world!! (from file)";
+                color: green;
+            }
         }
         width: 100px;
         height: 100px;
