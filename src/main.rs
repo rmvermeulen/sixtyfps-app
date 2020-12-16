@@ -4,9 +4,10 @@ sixtyfps::sixtyfps! {
         GroupBox, LineEdit, StandardListView, ComboBox
     } from "sixtyfps_widgets.60";
 
-    HelloWorld := Window {
+    MyApp := Window {
         signal doThing;
         property<string> header_text <=> input.text;
+        property<[string]> files: [];
         GridLayout {
 
             Rectangle {
@@ -29,15 +30,33 @@ sixtyfps::sixtyfps! {
                 clicked => { root.doThing() }
             }
         }
+        StandardListView {
+        }
     }
 }
 
 // sixtyfps::include_modules!();
 
 fn main() {
-    let app = HelloWorld::new();
+    do_a_glob();
+    run_app();
+}
+fn run_app() {
+    let app = MyApp::new();
     app.on_doThing(|| {
         println!("button clicked!");
     });
     app.run();
+}
+fn do_a_glob() {
+    use glob::glob;
+    for entry in glob("D:/assets/*.png").expect("Failed to read glob pattern") {
+        match entry {
+            Ok(path) => {
+                println!("{:?}", path.display());
+            }
+            Err(e) => println!("{:?}", e),
+        }
+    }
+    println!("glob done!");
 }
