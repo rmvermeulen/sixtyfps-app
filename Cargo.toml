@@ -10,7 +10,7 @@ build = "build.rs"
 [dependencies]
 sixtyfps = "0.0.4"
 glob = "0.3.0"
-
+tokio = { version = "0.3", features = ["full"] }
 
 [build-dependencies]
 sixtyfps-build = "0.0.4"
